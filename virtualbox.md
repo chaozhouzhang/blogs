@@ -9,6 +9,7 @@
 
 
 #在Mac的VirtualBox上安装Ubuntu虚拟机后，创建共享文件夹：
+
 1、同Windows
 
 2、同Windows
