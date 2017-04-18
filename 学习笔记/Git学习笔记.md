@@ -67,7 +67,8 @@ sudo apt-get install git-core
 
 ## 2.3、Windows
 ### 2.3.1、msysgit安装
-1）msysgit已经将模拟环境和Git都打包好，默认选项安装即可，下载地址：https://git-for-windows.github.io/；
+1）msysgit已经将模拟环境和Git都打包好，默认选项安装即可；
+下载地址：https://git-for-windows.github.io/
 
 2）安装完成后，在开始菜单里找到“Git”->“Git Bash”；
 
@@ -81,41 +82,27 @@ git config --global user.email "email@example.com"
 
 
 | Command      | Operation          |Example                                      |
-|--------------|--------------------|--------------------|
-| init		    | 初始化Git仓库        |
-| add          | 添加修改到暂存区      |   
-| commit       | 提交修改到版本库      |                              
-| status       | 查看工作区的状态      |
-| diff        	 | 查看文件的修改内容                                    
-| log       	 | 查看提交日志                                 
-| reset        |                                             
-| reflog       |                                          
-| checkout     | 
-| PHP          |                                           
+|--------------|--------------------|------------------------------------|
+| init		    | 初始化Git仓库        | git init                          |
+| add          | 添加修改到暂存区      | git add readme.txt                 |
+| commit       | 提交修改到版本库      | git commit -m "wrote a readme file"|                            
+| status       | 查看工作区的状态      | git status                         |
+| diff        	 | 查看文件的修改内容    | git diff readme.txt                | 
+| diff| 查看文件在工作区和版本库里最新版本的区别| git diff HEAD --readme.txt    |              
+| log       	 | 查看提交日志         | git log                            |            
+| log       	 | 查看提交单行日志      | git log --pretty=oneline           |                     
+| reset        | 回退版本库到上1个版本 | git reset --hard HEAD^             |       
+| reset        | 回退版本库到上2个版本 | git reset --hard HEAD^^             |                         
+| reset        | 回退版本库到上100个版本 | git reset --hard HEAD~100         |                       
+| reset        | 回退版本库到commit id版本 | git reset --hard 0cd2cfe       | 
+| reset        | 把暂存区的修改回退到工作区 | git reset HEAD readme.txt       |                                  
+| reflog       | 查看命令历史        | git reflog                          |
+| checkout | 丢弃工作区的修改,用版本库版本替换工作区版本 | git checkout -- readme.txt|
+| rm     | 从版本库中删除     | git rm test.txt           |        
 
 
+#### 3.1、初始化Git仓库--添加修改到暂存区--提交修改到版本库--查看工作区的状态--查看文件的修改内容
 ![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
-
-
-![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
-
-![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
-
-![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
-
-![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
-
-![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
-3.3、要随时掌握工作区的状态，使用git status命令。
-3.4、如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
-3.5、HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
-3.6、穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
-3.7、要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
-3.8、每次修改，如果不add到暂存区，那就不会加入到commit中。
-3.9、当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
-3.10、当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
-3.11、已经提交了不合适的修改到版本库时，想要撤销本次提交，可以版本回退，不过前提是没有推送到远程库。
-3.12、命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
 
 # 4、远程仓库
 
