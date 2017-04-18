@@ -66,18 +66,46 @@ sudo apt-get install git-core
 2）运行Xcode，选择菜单“Xcode”->“Preferences”，在弹出窗口中找到“Downloads”，选择“Command Line Tools”，点“Install”完成安装。
 
 ## 2.3、Windows
-###2.3.1、msysgit安装
+### 2.3.1、msysgit安装
 1）msysgit已经将模拟环境和Git都打包好，默认选项安装即可，下载地址：https://git-for-windows.github.io/；
+
 2）安装完成后，在开始菜单里找到“Git”->“Git Bash”；
+
 3）设置：
+
 git config --global user.name "Your Name"
+
 git config --global user.email "email@example.com"
 
 # 3、本地版本库操作
-3.1、初始化一个Git仓库，使用git init命令。
-3.2、添加文件到Git仓库，分两步：
-1）第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件；
-2）第二步，使用命令git commit，完成。
+
+
+| Command      | Operation          |Example                                      |
+|--------------|--------------------|--------------------|
+| init		    | 初始化Git仓库        |
+| add          | 添加修改到暂存区      |   
+| commit       | 提交修改到版本库      |                              
+| status       | 查看工作区的状态      |
+| diff        	 | 查看文件的修改内容                                    
+| log       	 | 查看提交日志                                 
+| reset        |                                             
+| reflog       |                                          
+| checkout     | 
+| PHP          |                                           
+
+
+![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
+
+
+![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
+
+![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
+
+![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
+
+![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
+
+![add-commit-status-diff](https://github.com/chaozhouzhang/blogs/blob/master/file/git/init-add-commit-status-diff.png)
 3.3、要随时掌握工作区的状态，使用git status命令。
 3.4、如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
 3.5、HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
