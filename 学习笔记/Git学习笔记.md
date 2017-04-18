@@ -83,73 +83,14 @@ git config --global user.name "Your Name"
 
 git config --global user.email "email@example.com"
 ```
-# 3、本地版本库操作
 
-
-| Command      | Operation          |Example                                      |
-|--------------|--------------------|------------------------------------|
-| init		    | 初始化Git仓库        | git init                          |
-| add          | 添加修改到暂存区      | git add readme.txt                 |
-| commit       | 提交修改到版本库      | git commit -m "wrote a readme file"|                            
-| status       | 查看工作区的状态      | git status                         |
-| diff        	 | 查看文件的修改内容    | git diff readme.txt                | 
-| diff| 查看文件在工作区和版本库里最新版本的区别| git diff HEAD --readme.txt    |              
-| log       	 | 查看提交日志         | git log                            |            
-| log       	 | 查看提交单行日志      | git log --pretty=oneline           |
-| log       	 | 查看分支合并图        | git log --graph           |                     
-| reset        | 回退版本库到上1个版本 | git reset --hard HEAD^             |       
-| reset        | 回退版本库到上2个版本 | git reset --hard HEAD^^             |                         
-| reset        | 回退版本库到上100个版本 | git reset --hard HEAD~100         |                       
-| reset        | 回退版本库到commitid版本 | git reset --hard 0cd2cfe       | 
-| reset        | 回退暂存区的修改到工作区 | git reset HEAD readme.txt       |                                  
-| reflog       | 查看命令历史          | git reflog                        |
-| checkout     | 丢弃工作区的修改       | git checkout -- readme.txt       |
-| checkout     | 创建并切换分支       | git checkout -b dev       |
-| checkout     | 切换分支       | git checkout master       |
-| branch       | 查看当前分支       | git branch      |
-| branch       | 创建分支       | git branch dev     |
-| branch       | 删除分支       | git branch -d dev      |
-| rm           | 从版本库中删除        | git rm readme.txt                 |  
-| merge        | 合并指定分支到当前分支        | git merge dev                 |        
-
-# 4、远程仓库
-
-
+# 3、远程仓库
 ## 4.1、创建SSH Key
 进入用户主目录里的.ssh/目录：
 ```
 ssh-keygen -t rsa -C "youremail@example.com"
 ```
-根据提示输入密钥名称以及口令，创建成功后，有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露，id_rsa.pub是公钥。
-```
-TeochewZhang:~ zhangchaozhou$ cd .ssh/
-TeochewZhang:.ssh zhangchaozhou$ ssh-keygen -t rsa -C "chaozhouzhang@qq.com"
-Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/zhangchaozhou/.ssh/id_rsa): test_rsa
-Enter passphrase (empty for no passphrase): 
-Enter same passphrase again: 
-Your identification has been saved in test_rsa.
-Your public key has been saved in test_rsa.pub.
-The key fingerprint is:
-SHA256:pbxOlySKIe/PnUrtEQaCzeVhTlEjG2QMXyBYTUxGohk chaozhouzhang@qq.com
-The key's randomart image is:
-+---[RSA 2048]----+
-|  Eo=X^++        |
-|  .B %+* .       |
-|  + + *   .      |
-|     . o o       |
-|  . .   S .      |
-|   o o + = .     |
-|    o o = o      |
-|   . o = +       |
-|    ..+.=        |
-+----[SHA256]-----+
-TeochewZhang:.ssh zhangchaozhou$ ls
-github_rsa	github_rsa.pub	known_hosts	test_rsa	test_rsa.pub
-TeochewZhang:.ssh zhangchaozhou$ cat test_rsa.pub 
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNI7sqPwY0mZVOoB3pJuntdThEmuSRw0nIUGqn5/W7m3posoM8XWXbtfiTnnCRfqhWcJMHEzELahWLSpzR5C0ZMn/maEivqlnJrD5vmd4pqfYP1QqmVRltcmyewCNQ7XumosUIkvPqHvCBn6nZmBpTTwVODilMXFr7ByWwKyguLGMyeEsQ/TNKhRbArPe+9K2qVP8gkV+dOe5Y4CLAqziXojVfozTxlySoY2Fx8b9aqhgQvfL/JXXsmSothXnlfJUPf2cC++VGZ6nPHBwouihE3jTHK+ETP/hvgLuJQno8qRsCjaXAwG+aLGcpWTJrhIHDNcyH6jiapcSumbXMplMB chaozhouzhang@qq.com
-TeochewZhang:.ssh zhangchaozhou$ 
-```
+根据提示输入密钥的名称id_rsa以及口令，创建成功后，有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露，id_rsa.pub是公钥。
  
 ## 4.2、添加公钥到Gtihub
   登陆GitHub，进入“Settings”，打开“SSH and GPG keys”页面，然后点击“Add SSH Key”，在Title文本框填上密钥名称，在Key文本框里粘贴id_rsa.pub文件的内容。
@@ -172,63 +113,21 @@ git commit -m "add all"
 ```
 git push origin master
 ```
-例如：
-```
-TeochewZhang:test zhangchaozhou$ git remote add origin git@github.com:chaozhouzhang/test.git
-TeochewZhang:test zhangchaozhou$ git pull origin master --allow-unrelated-histories
-warning: no common commits
-remote: Counting objects: 31, done.
-remote: Compressing objects: 100% (17/17), done.
-remote: Total 31 (delta 8), reused 26 (delta 7), pack-reused 0
-Unpacking objects: 100% (31/31), done.
-From github.com:chaozhouzhang/test
- * branch            master     -> FETCH_HEAD
- * [new branch]      master     -> origin/master
-Merge made by the 'recursive' strategy.
- .gitignore |  40 ++++++++++++
- LICENSE    | 201 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- README.md  |   2 +
- ok.txt     |   1 +
- readme.txt |   4 ++
- test.txt   |   1 +
- 6 files changed, 249 insertions(+)
- create mode 100644 .gitignore
- create mode 100644 LICENSE
- create mode 100644 README.md
- create mode 100644 ok.txt
- create mode 100644 readme.txt
- create mode 100644 test.txt
-TeochewZhang:test zhangchaozhou$ ls
-LICENSE		git.txt		readme.txt
-README.md	ok.txt		test.txt
-TeochewZhang:test zhangchaozhou$ git add .
-TeochewZhang:test zhangchaozhou$ git commit -m "add all"
-On branch master
-nothing to commit, working tree clean
-TeochewZhang:test zhangchaozhou$ git push origin master
-Counting objects: 5, done.
-Delta compression using up to 8 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (5/5), 516 bytes | 0 bytes/s, done.
-Total 5 (delta 1), reused 0 (delta 0)
-remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-To github.com:chaozhouzhang/test.git
-   75bae4a..3eb9b42  master -> master
-TeochewZhang:test zhangchaozhou$ 
-```
-# 5、远程仓库操作
-
-
+# 4、操作指令
 | Command      | Operation          |Example                                      |
 |--------------|--------------------|------------------------------------|
-| clone| 克隆远程仓库到本地仓库| git clone github.com:chaozhouzhang/test.git|
+| init		    | 初始化Git仓库        | git init                          |
 | add          | 添加修改到暂存区      | git add readme.txt                 |
+| add          | 强制添加修改到暂存区| git add -f App.class         |
 | commit       | 提交修改到版本库      | git commit -m "wrote a readme file"|                            
 | status       | 查看工作区的状态      | git status                         |
 | diff        	 | 查看文件的修改内容    | git diff readme.txt                | 
 | diff| 查看文件在工作区和版本库里最新版本的区别| git diff HEAD --readme.txt    |              
 | log       	 | 查看提交日志         | git log                            |            
-| log       	 | 查看提交单行日志      | git log --pretty=oneline           |                     
+| log       	 | 查看提交单行日志      | git log --pretty=oneline           |
+| log       	 | 查看分支合并图        | git log --graph           | 
+| log       	 | 查看提交单行简单名称日志| git log --pretty=oneline --abbrev-commit| 
+| log | 查看分支单行合并图| git log --graph --pretty=oneline --abbrev-commit|                            
 | reset        | 回退版本库到上1个版本 | git reset --hard HEAD^             |       
 | reset        | 回退版本库到上2个版本 | git reset --hard HEAD^^             |                         
 | reset        | 回退版本库到上100个版本 | git reset --hard HEAD~100         |                       
@@ -236,10 +135,44 @@ TeochewZhang:test zhangchaozhou$
 | reset        | 回退暂存区的修改到工作区 | git reset HEAD readme.txt       |                                  
 | reflog       | 查看命令历史          | git reflog                        |
 | checkout     | 丢弃工作区的修改       | git checkout -- readme.txt       |
-| rm           | 从版本库中删除        | git rm readme.txt                 | 
+| checkout     | 创建并切换分支       | git checkout -b dev       |
+|checkout|本地创建和远程分支对应的分支|git checkout -b branch-name origin/branch-name|
+| checkout     | 切换分支       | git checkout master       |
+| branch       | 查看当前分支       | git branch      |
+| branch       | 创建分支       | git branch dev     |
+| branch       | 删除分支       | git branch -d dev      |
+| branch|建立本地分支和远程分支的关联|git branch --set-upstream branch-name origin/branch-name|
+| branch       | 强行删除未合并的分支       | git branch -D feature-vulcan     |
+| rm           | 从版本库中删除        | git rm readme.txt                 |  
+| merge        | 合并指定分支到当前分支        | git merge dev              |  
+| merge|普通模式合并，合并后的历史有分支 | git merge --no-ff -m "merge with no-ff" dev|  
+| stash        | 储藏工作现场        | git stash              |  
+| stash        | 查看储藏工作现场列表        | git stash list              | 
+| stash        | 恢复储藏工作现场        | git stash apply              | 
+| stash        | 删除储藏工作现场        | git stash drop              |  
+| stash        | 恢复并删除储藏工作现场        | git stash pop              | 
+| stash        | 恢复指定的储藏工作现场        | git stash apply stash@{0}|  
+| clone| 克隆远程仓库到本地仓库| git clone github.com:chaozhouzhang/test.git|
+| remote        | 查看远程仓库的信息        | git remote              | 
+| remote        | 查看远程仓库的详细信息        | git remote -v             | 
+| push        | 推送分支        | git push origin master             |
+| push        | 推送某个标签到远程        | git push origin v1.0             |
+| push        | 远程删除某个标签        | git push origin :refs/tags/v0.9|
+| push        |一次性推送全部尚未推送到远程的本地标签 |git push origin --tags| 
+| tag        | 打新标签       | git tag v1.0             | 
+| tag        | 查看所有标签       | git tag             | 
+| tag        | 给某个提交打标签       | git tag v0.9 6224937             | 
+| tag| 创建带有说明的标签| git tag -a v0.1 -m "version 0.1 released" 3628164| 
+| tag| 用私钥对标签PGP签名|git tag -s v0.2 -m "signed version 0.2 released" fec145a| 
+| tag        | 删除本地标签       | git tag -d v0.1             | 
+| show        | 查看某个标签信息       | git show v0.9             | 
+| config        | 让Git显示颜色       | git config --global color.ui true |
+| config        | 配置用户名       | git config --global user.name "Your Name" | 
+| config        | 配置用户邮箱       | git config --global user.email "email@example.com" | 
+| check-ignore        | 检查.gitignore规则       | git check-ignore -v App.class |
+| config   | 配置命令的别名       |git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit" |
 
-
-# 参考资料：
+# 5、参考资料：
 1）Git官网：
 ```
 https://git-scm.com/
