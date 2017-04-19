@@ -98,7 +98,7 @@ ssh-keygen -t rsa -C "youremail@example.com"
 ## 4.3、将远程仓库和本地版本库进行关联
 在本地版本库目录下，添加远程仓库：
 ```
-git remote add origin git@github.com:chaozhouzhang/test.git
+git remote add origin git@github.com:chaozhouzhang/blogs.git
 ```
 添加成功之后，拉取远程仓库到本地主分支：
 ```
@@ -152,7 +152,7 @@ git push origin master
 | stash        | 删除储藏工作现场        | git stash drop              |  
 | stash        | 恢复并删除储藏工作现场        | git stash pop              | 
 | stash        | 恢复指定的储藏工作现场        | git stash apply stash@{0}|  
-| clone| 克隆远程仓库到本地仓库| git clone github.com:chaozhouzhang/test.git|
+| clone| 克隆远程仓库到本地仓库| git clone github.com:chaozhouzhang/blogs.git|
 | remote        | 查看远程仓库的信息        | git remote              | 
 | remote        | 查看远程仓库的详细信息        | git remote -v             | 
 | push        | 推送分支        | git push origin master             |
