@@ -129,7 +129,7 @@ git push origin master
 | log       	 | 查看提交单行简单名称日志| git log --pretty=oneline --abbrev-commit| 
 | log | 查看分支单行合并图| git log --graph --pretty=oneline --abbrev-commit|                            
 | reset        | 回退版本库到上1个版本 | git reset --hard HEAD^             |       
-| reset        | 回退版本库到上2个版本 | git reset --hard HEAD^^             |                         
+| reset        | 回退版本库到上2个版本 | git reset --hard HEAD^ ^             |                         
 | reset        | 回退版本库到上100个版本 | git reset --hard HEAD~100         |                       
 | reset        | 回退版本库到commitid版本 | git reset --hard 0cd2cfe       | 
 | reset        | 回退暂存区的修改到工作区 | git reset HEAD readme.txt       |                                  
