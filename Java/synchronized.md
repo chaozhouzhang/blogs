@@ -339,8 +339,89 @@ public class Thread5 {
 2． 如果instance变量是一个对象，如数组或ArrayList什么的，那上述方法仍然不安全，因为当外界对象通过get方法拿到这个instance对象的引用后，又将其指向另一个对象，那么这个private变量也就变了，岂不是很危险。 这个时候就需要将get方法也加上synchronized同步，并且，只返回这个private对象的clone()，这样，调用端得到的就是对象副本的引用了。
 
 
+```
+public class User implements Cloneable {
+
+    private String mName;
+    
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String name) {
+        mName = name;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+```
 
 
+```
+public class Thread6 {
+    private static User mUser = new User();
+
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final User user = new User();
+                user.setName(Thread.currentThread().getName());
+                setUser(user);
+            }
+        },"t1");
+
+
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final User user = new User();
+                user.setName(Thread.currentThread().getName());
+                setUser(user);
+            }
+        },"t2");
+
+        Thread t3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final User user = new User();
+                user.setName(Thread.currentThread().getName());
+                setUser(user);
+            }
+        },"t3");
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+
+    public static synchronized User getUser() throws CloneNotSupportedException {
+        return (User) mUser.clone();
+    }
+
+
+    public static void setUser(User user) {
+        synchronized (mUser) {
+            mUser.setName(user.getName());
+            System.out.println(mUser.getName());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+运行结果：
+```
+t1
+t2
+t3
+```
 
 参考：
 http://www.cnblogs.com/GnagWang/archive/2011/02/27/1966606.html
