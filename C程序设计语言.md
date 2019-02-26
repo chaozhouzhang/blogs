@@ -71,3 +71,12 @@ Hello, World!
 格式输出
 
 
+# EOF
+在C语言运行过程中，有时需要在终端手动输入EOF，其输入方法与操作系统有关。
+### 1、Windows系统。
+在windows下输入EOF需要输入CTRL+Z。
+### 2、Linux/Unix/Mac操作系统。
+在这类操作系统下，要输入EOF需要输入CTRL+D。
+
+
+
