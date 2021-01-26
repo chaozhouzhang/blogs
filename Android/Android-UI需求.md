@@ -26,4 +26,25 @@
 
 此时需要下载的切图需要是设计切图的1.5倍，也就是xxhdpi相当于iOS的@3x
 
-3、
+3、判断点击位置是否在某个控件内
+
+```kotlin
+        /**
+         * (x,y)是否在view的区域内
+         *
+         * @param view
+         * @param x
+         * @param y
+         * @return
+         */
+        fun isTouchPointInView(view: View, x: Int, y: Int): Boolean {
+            val location = IntArray(2)
+            view.getLocationOnScreen(location)
+            val left = location[0]
+            val top = location[1]
+            val right = left + view.measuredWidth
+            val bottom = top + view.measuredHeight
+            return y in top..bottom && x >= left && x <= right
+        }
+```
+
