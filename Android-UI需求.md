@@ -24,6 +24,6 @@
 
 相当于Android的720px x 1280px xhdpi 320的dpi 1dp=2px
 
-此时需要下载的切图需要是设计切图的1.5倍，也就是xxhdpi
+此时需要下载的切图需要是设计切图的1.5倍，也就是xxhdpi相当于iOS的@3x
 
 3、
